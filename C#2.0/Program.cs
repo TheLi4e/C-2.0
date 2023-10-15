@@ -1,31 +1,25 @@
 ﻿using C_2._0;
 
-//Создаем двумерный массив
-int[,] a = { { 7, 3, 2 }, { 4, 9, 6 }, { 1, 8, 5 } };
-
-//Выводим на печать заданный массив
-for (int i = 0; i <a.GetLength(0); i++)
+internal class Program
 {
-    for (int j = 0; j < a.GetLength(1); j++)
+   
+    private static void Main(string[] args)
     {
-        Console.Write($"{a[i, j]}\t");
+
+        const int WINDOW_HEGHT = 11;
+        const int WINDOW_WIDTH = 120;
         
+        GUI.DrawWindow(0, 0, WINDOW_WIDTH, WINDOW_HEGHT);
+
+        var man = new Man("Alesha", "Korobov", Gender.male, DateTime.Now);
+        var woman = new Woman("Ksenia", "Alehina", Gender.female, DateTime.Now);
+        
+        woman.AddHusband(man);
+        man.AddWife(woman);
+        
+        Console.SetCursorPosition(2, 1);
+        Console.WriteLine(woman.PrintHusband());
+        Console.SetCursorPosition(2, 6);
+        Console.WriteLine(man.PrintWife());
     }
-    Console.WriteLine();
-}
-
-Console.WriteLine();
-
-//Сортируем двумерный массив с помощью класса Arrays
-var sortedArray = Arrays.Task1(Arrays.ConcatArray(a));
-
-//Выводим на печать отсортированный массив
-for (int i = 0; i < sortedArray.GetLength(0); i++)
-{
-    for (int j = 0; j < sortedArray.GetLength(1); j++)
-    {
-        Console.Write($"{sortedArray[i, j]}\t");
-
-    }
-    Console.WriteLine();
 }
