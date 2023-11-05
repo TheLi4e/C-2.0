@@ -72,8 +72,6 @@ internal class Program
         string searchTerm = "an";
         words.Where(x => x.Contains(searchTerm)).ToList().ForEach(Console.WriteLine);
 
-        //у нас есть список чисел, и мы хотим умножить каждое число в списке на 2, используя анонимный метод
-        var numbedList2 = new List<int>() { 1,2,3,4,122,123,2323,212,23123,90};
-        numbedList2.Select(x => x * 2).ToList().ForEach(Console.WriteLine);
+
     }
 }
