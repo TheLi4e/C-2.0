@@ -13,10 +13,10 @@ namespace C_2._0
         //выводить информацию о результате  при помощи события
 
         double Result { get; set; }
-        void Sum(int x);
-        void Sub(int x);
-        void Multy(int x);
-        void Divide(int x);
+        void Sum(double x);
+        void Sub(double x);
+        void Multy(double x);
+        void Divide(double x);
         void CancelLast();
         event EventHandler<EventArgs> MyEventHandler;
 
