@@ -11,18 +11,14 @@ internal class Program
         string exitCommand = String.Empty;
         string operation = String.Empty;
         string command = String.Empty;
-        int num = 0;
+        double num = 0;
 
         Console.WriteLine("Добро пожаловать в калькулятор.");
 
         while (true)
         {
 
-            Console.WriteLine();
-
-            num = calc.EnterNum();
-            calc.Run(num);
-            Console.Write ($"Ответ: {calc._result}\n");
+            calc.Run();
             Console.WriteLine("Для завершения работы введите: " +
                 "отмена или поставьте пробел и нажмите Enter\n" +
                 "Для продолжения работы нажмите Enter");
@@ -33,6 +29,7 @@ internal class Program
                 Console.ReadKey(true);
                 break;
             }
+            Console.Clear();
         }
     }
     public static void SubscribeMyEvent(object? sender, EventArgs e)

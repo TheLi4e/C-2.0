@@ -29,33 +29,56 @@ namespace C_2._0
             MyEventHandler?.Invoke(this, new EventArgs());
         }
 
-
-        public void Divide(int x)
+        private void Print ()
         {
-            _result /= x;
-            PrintResult();
-            LastResult.Push(_result);
+
+            Console.Write($"Ответ: {_result}\n");
         }
 
-        public void Multy(int x)
+
+        public void Divide(double x, double y)
         {
-            _result *= x;
+            var answer = x / y;
             PrintResult();
+            _result = answer;
             LastResult.Push(_result);
+            Print();
         }
 
-        public void Sub(int x)
+        public void Multy(double x, double y)
         {
-            _result -= x;
+            var answer = x * y;
             PrintResult();
+            _result = answer;
             LastResult.Push(_result);
+            Print();
         }
 
-        public void Sum(int x)
+        public void Sub(double x, double y)
         {
-            _result += x;
+            try
+            {
+                var answer = x - y;
+
+                if (answer < 0)
+                {
+                    throw new ArgumentException("Нельзя получить ответ меньше 0");
+                }
+                PrintResult();
+                _result = answer;
+                LastResult.Push(_result);
+                Print();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+        }
+
+        public void Sum(double x, double y)
+        {
+            var answer = x + y;
             PrintResult();
+            _result = answer;
             LastResult.Push(_result);
+            Print();
         }
 
         public void CancelLast()
@@ -83,45 +106,53 @@ namespace C_2._0
         }
 
 
-        public int EnterNum()
+        public double EnterNum()
         {
-            Console.Write("Введите первое число: ");
-            _result = int.Parse(Console.ReadLine());
-            Console.Write("Введите второе число: ");
-            var sNum = Console.ReadLine();
-            if (int.TryParse(sNum, out int num)) { }
-            Console.Clear();
+            Console.WriteLine("Введите число: ");
+            var fNum = Console.ReadLine();
+            if (DoubleTryParse.MyDoubleTryParse(fNum, out double num))
+            {
+                if (num < 0)
+                    throw new ArgumentException("Число не может быть меньше 0");
+
+            }
             return num;
         }
-        public void Run(int num)
+        public void Run()
         {
-            bool a = true;
-            PrintOperations();
-            Console.Write("Введите знак математической операции:  ");
-            string operation = Console.ReadLine()!;
-
-
-            switch (operation)
+            try
             {
-                case "+":
-                    Sum(num);
-                    break;
-                case "-":
-                    Sub(num); ;
-                    break;
-                case "/":
-                    Divide(num); ;
-                    break;
-                case "*":
-                    Multy(num); ;
-                    break;
-                case "Отмена":
-                    CancelLast();
-                    break;
-                default:
-                    Console.WriteLine("Введен некорректный символ. Попробуйте снова");
-                    break;
+                var x = EnterNum();
+                var y = EnterNum();
+
+                bool a = true;
+                PrintOperations();
+                Console.Write("Введите знак математической операции:  ");
+                string operation = Console.ReadLine()!;
+
+                switch (operation)
+                {
+                    case "+":
+                        Sum(x, y);
+                        break;
+                    case "-":
+                        Sub(x, y);
+                        break;
+                    case "/":
+                        Divide(x, y);
+                        break;
+                    case "*":
+                        Multy(x, y);
+                        break;
+                    case "Отмена":
+                        CancelLast();
+                        break;
+                    default:
+                        Console.WriteLine("Введен некорректный символ. Попробуйте снова");
+                        break;
+                }
             }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
     }
 }
