@@ -4,7 +4,14 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-       Lesson10 lesson10 = new Lesson10();
-       lesson10.MyCopyFile(@"D:\GeekBrainsHomework\С#2.0\C#2.0\", "1.txt", "1.txt");
+        string path = "../../../";
+        foreach (var file in HW10.SerchFilesByExtension(path))
+        {
+            Console.WriteLine(file);
+        }
+
+        Console.WriteLine();
+
+        HW10.SerchTextInFiles(HW10.SerchFilesByExtension(path), "HW10");
     }
-} 
+}
