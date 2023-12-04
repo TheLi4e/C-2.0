@@ -12,7 +12,7 @@ namespace C_2._0
         internal void Run(string[] args)
         {
             Type type = typeof(TestClass);
-            var s = ObjectToString(new TestClass(32, "string", 1.1m, new char[] { 'S', 't', 'R' }));
+            var s = ObjectToString(new TestClass(32, "string", 1.1m, 'S'));
             Console.WriteLine(s);
             var o = StringToObject(s) as TestClass;
             Console.WriteLine(o.GetType());
